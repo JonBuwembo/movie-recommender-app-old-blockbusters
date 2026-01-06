@@ -1,0 +1,1 @@
+-- tables created for movie recommendation application

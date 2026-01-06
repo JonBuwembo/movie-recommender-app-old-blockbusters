@@ -1,0 +1,23 @@
+# environment variables in backend
+backend/.env
+frontend/.gitignore
+
+# Python virtual environment
+.venv/
+
+# Environment variables in other files
+.env
+frontend/.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# ML artifacts
+*.pkl
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
