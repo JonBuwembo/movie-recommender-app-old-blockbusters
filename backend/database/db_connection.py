@@ -2,7 +2,13 @@
 # Creates and manages a connection between backend and PostgreSQL database
 import psycopg2
 import os
-from psycopg2 import RealDictCursor
+from psycopg2.extras import RealDictCursor
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load environment variables from .env file
+dotenv_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=dotenv_path)
 
 
 # Read environment variables for database connection
@@ -24,14 +30,20 @@ def get_db_connection():
             port=DB_PORT,
             cursor_factory=RealDictCursor
         )
+
+        return connection
     except Exception as e:
         print(f"Error connecting to the database: {e}")
         return None
 
 
 
-if __name__ == "__main__";
+if __name__ == "__main__":
     connection = get_db_connection()
-    print("Database connection successful!")
-    connection.close()
 
+    if connection is not None:
+        print("Database connection successfully established!")
+        connection.close()
+        print("Connection closed.")
+    else:
+        print("Failed to establish database connection.")
